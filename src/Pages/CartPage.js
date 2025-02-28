@@ -11,10 +11,10 @@ const CartPage = () => {
   const fetchCart = async () => {
     try {
       const data = await getCart();
-      console.log("Cart data:", data); // Debugging
+      console.log("Cart data:", data); 
       const updatedCart = data.map((item) => ({
         ...item,
-        quantity: item.quantity || 1, // Ensure default quantity of 1
+        quantity: item.quantity || 1, 
       }));
       setCart(updatedCart);
     } catch (error) {

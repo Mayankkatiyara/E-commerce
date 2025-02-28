@@ -8,7 +8,7 @@ const ProductList = () => {
   const navigate = useNavigate();
 
   useEffect(() => {
-    console.log("Fetching products..."); // Debugging
+    console.log("Fetching products..."); 
     getProducts()
       .then((data) => {
         console.log("Products received:", data);
@@ -17,14 +17,14 @@ const ProductList = () => {
       .catch((error) => console.error("Error fetching products:", error));
   }, []);
 
-  // Handle add to cart - fixed to send complete product data including image
+ 
   const handleAddToCart = async (product) => {
     const updatedCart = {
       ...cart,
       [product.id]: (cart[product.id] || 0) + 1,
     };
 
-    setCart(updatedCart); // Update local state first
+    setCart(updatedCart); 
 
     try {
       await addToCart({

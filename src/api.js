@@ -2,7 +2,7 @@ import axios from "axios";
 
 const API_BASE_URL = "http://127.0.0.1:5000/api"; // Flask backend API
 
-// Fetch all products
+
 export const getProducts = async () => {
   try {
     const response = await axios.get(`${API_BASE_URL}/products`);
@@ -13,7 +13,7 @@ export const getProducts = async () => {
   }
 };
 
-// Fetch cart items
+
 export const getCart = async () => {
   try {
     const response = await axios.get(`${API_BASE_URL}/cart`);
@@ -24,7 +24,7 @@ export const getCart = async () => {
   }
 };
 
-// Add product to cart - fixed to send complete product data
+
 export const addToCart = async (product) => {
   try {
     const response = await axios.post(`${API_BASE_URL}/cart/add`, product);
@@ -35,7 +35,7 @@ export const addToCart = async (product) => {
   }
 };
 
-// Remove product from cart
+
 export const removeFromCart = async (productId) => {
   try {
     await axios.post(`${API_BASE_URL}/cart/remove`, { id: productId });
@@ -45,7 +45,7 @@ export const removeFromCart = async (productId) => {
   }
 };
 
-// Update product quantity in the cart
+
 export const updateCart = async (productId, newQuantity) => {
   try {
     const response = await axios.post(`${API_BASE_URL}/cart/update`, {

@@ -2,7 +2,7 @@ from flask import Flask, jsonify, url_for,request
 from flask_cors import CORS
 
 app = Flask(__name__)
-CORS(app)  # Enable CORS to allow requests from React frontend
+CORS(app) 
 
 from flask import send_from_directory
 
@@ -45,10 +45,10 @@ def add_to_cart():
 
     for item in cart_items:
         if item['id'] == product_id:
-            item['quantity'] += 1  # Increase quantity if already in cart
+            item['quantity'] += 1  
             return jsonify(cart_items), 200
 
-    # Add new item if not found
+    
     cart_items.append({**data, "quantity": 1})
     return jsonify(cart_items), 200
 
@@ -57,9 +57,9 @@ def update_cart():
     global cart_items
     data = request.json
     product_id = data.get('id')
-    action = data.get('action')  # 'increase' or 'decrease'
+    action = data.get('action')  
     
-    # Find the item in the cart
+   
     for i, item in enumerate(cart_items):
         if item['id'] == product_id:
             if action == "increase":
@@ -70,16 +70,13 @@ def update_cart():
     
     return jsonify(cart_items), 200
 
-# Add a route to remove items from the cart
+
 @app.route('/api/cart/remove', methods=['POST'])
 def remove_from_cart():
     global cart_items
     data = request.json
     product_id = data.get('id')
-    
-    # Remove the item from the cart
     cart_items = [item for item in cart_items if item['id'] != product_id]
-    
     return jsonify(cart_items), 200
 
 @app.route('/api/cart/total', methods=['GET'])
@@ -87,7 +84,6 @@ def calculate_cart_total():
     global cart_items
     total_price = sum(item['price'] * item['quantity'] for item in cart_items)
     discount = 0
-
     for item in cart_items:
         if item['quantity'] >= 3:
             discount += (item['price'] * item['quantity']) * 0.10  # 10% discount on individual item
@@ -107,4 +103,3 @@ if __name__ == '__main__':
     app.run(debug=True)
 
 
-#The current code uses local component state and API calls to manage the cart.

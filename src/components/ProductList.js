@@ -55,7 +55,7 @@ const ProductList = () => {
               className="w-32 h-32 object-cover mb-3 rounded-md"
             />
             <h3 className="text-lg font-semibold">{product.name}</h3>
-            <p className="text-gray-600">${product.price}</p>
+            <p className="text-gray-600">₹{product.price}</p>
 
             {cart[product.id] ? (
               <button
